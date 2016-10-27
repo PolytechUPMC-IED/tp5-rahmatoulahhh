@@ -1,0 +1,297 @@
+Exercice1: GIT Début
+
+1)
+
+3673871@pc4065:~/Bureau/TP5$ git config --global user.name "rama"
+3673871@pc4065:~/Bureau/TP5$ git config --global user.email "ramatoulaye.ndiaye@etu.upmc.fr"
+3673871@pc4065:~/Bureau/TP5$ git config --global color.ui auto
+
+2)
+
+3673871@pc4065:~/Bureau/TP5$ mkdir git
+3673871@pc4065:~/Bureau/TP5$ cd git
+3673871@pc4065:~/Bureau/TP5/git$ ls
+3673871@pc4065:~/Bureau/TP5/git$ git init
+Dépôt Git vide initialisé dans /nfs/home/sasl/eleves/main/3673871/Bureau/TP5/git/.git/
+
+Il y'a les répertoires git et .git qui ont été créés avec la commande git init qui initialise le répertoire courant.
+
+3)
+
+(fichier question.txt créé dans le répertoire git)
+
+4)
+
+En tapant la commande git status, elle me dit que le fichier question3.txt que je viens de créer n'est pas encore pris en compte par le gestionnaire de version.
+
+3673871@pc4065:~/Bureau/TP5/git$ git status
+Sur la branche master
+
+Validation initiale
+
+Fichiers non suivis:
+  (utilisez "git add <fichier>..." pour inclure dans ce qui sera validé)
+
+	question3.txt
+
+aucune modification ajoutée à la validation mais des fichiers non suivis sont présents (utilisez "git add" pour les suivre)
+
+5)
+
+Maintenant mon fichier question3.txt a été ajouté au gestionnaire de version.
+
+3673871@pc4065:~/Bureau/TP5/git$ git add question3.txt 
+3673871@pc4065:~/Bureau/TP5/git$ git status
+Sur la branche master
+
+Validation initiale
+
+Modifications qui seront validées :
+  (utilisez "git rm --cached <fichier>..." pour désindexer)
+
+	nouveau fichier: question3.txt
+
+6)
+
+Commit accompagné par un message qui décrit les changements qu'il apporte.
+
+3673871@pc4065:~/Bureau/TP5/git$ git commit -m "Un superMessage"
+[master (commit racine) 2b3811c] Un superMessage
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 question3.txt
+
+7)
+
+Statut de mon répertoire git:
+
+3673871@pc4065:~/Bureau/TP5/git$ git status
+Sur la branche master
+rien à valider, la copie de travail est propre
+
+
+8)
+
+log donne des informations sur le commit: auteur,fichier, date, message et le numéro de commit.
+
+
+3673871@pc4065:~/Bureau/TP5/git$ git log -p
+commit 2b3811c50270a813b0446658a7e5e36433045f3e
+Author: rama <ramatoulaye.ndiaye@etu.upmc.fr>
+Date:   Thu Oct 27 09:34:00 2016 +0200
+
+    Un superMessage
+
+diff --git a/question3.txt b/question3.txt
+new file mode 100644
+index 0000000..e69de29
+
+9)
+Dans mon fichier question3.txt je mets:
+a b c d e f g h 
+
+git diff montre la différence entre les versions.
+
+3673871@pc4065:~/Bureau/TP5/git$ git diff
+diff --git a/question3.txt b/question3.txt
+index e69de29..de09678 100644
+--- a/question3.txt
++++ b/question3.txt
+@@ -0,0 +1 @@
++a b c d e f g h
+
+Exercice2: GIT Branche
+
+1)
+
+Cà nous crée deux branches avec branch master et branch test
+
+3673871@pc4065:~/Bureau/TP5/git$ git branch test
+3673871@pc4065:~/Bureau/TP5/git$ git branch
+* master
+  test
+
+2)
+
+Dans mon fichier question3.txt, je mets:
+a b c d e f g h
+i j k l m n o p
+
+3673871@pc4065:~/Bureau/TP5/git$ git diff
+diff --git a/question3.txt b/question3.txt
+index e69de29..6241b44 100644
+--- a/question3.txt
++++ b/question3.txt
+@@ -0,0 +1,2 @@
++a b c d e f g h
++i j k l m n o p
+
+3)
+
+3673871@pc4065:~/Bureau/TP5/git$ git checkout test
+Basculement sur la branche 'test'
+3673871@pc4065:~/Bureau/TP5/git$ touch question3bis.txt
+3673871@pc4065:~/Bureau/TP5/git$ git add question3bis.txt 
+3673871@pc4065:~/Bureau/TP5/git$ git commit -m "Un superMessage"
+[test 1b19f7b] Un superMessage
+ 1 file changed, 1 insertion(+)
+ create mode 100644 question3bis.txt
+
+4)
+
+3673871@pc4065:~/Bureau/TP5/git$ git log --graph --decorate --oneline --all
+* 1b19f7b (HEAD, test) Un superMessage
+* 2b3811c (master) Un superMessage
+
+5)
+
+3673871@pc4065:~/Bureau/TP5/git$ git checkout master
+M	question3.txt
+Basculement sur la branche 'master'
+3673871@pc4065:~/Bureau/TP5/git$ git merge test
+Mise à jour 2b3811c..1b19f7b
+Fast-forward
+ question3bis.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 question3bis.txt
+3673871@pc4065:~/Bureau/TP5/git$ git log --graph --decorate --oneline --all
+* 1b19f7b (HEAD, test, master) Un superMessage
+* 2b3811c Un superMessage
+
+6)
+
+En faisant un commit sur master et test pour le nouveau fichier test_conflit.txt et le modifiant sur chaque branche, on aboutit avec merge à un conflit entre les 2 branches.
+
+3673871@pc4065:~/Bureau/TP5/git$ git branch 
+* master
+  test
+3673871@pc4065:~/Bureau/TP5/git$ git add 
+conflit        question3.txt  
+3673871@pc4065:~/Bureau/TP5/git$ git add conflit 
+3673871@pc4065:~/Bureau/TP5/git$ git commit -m"conlit"
+[master d9f06fb] conlit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+3673871@pc4065:~/Bureau/TP5/git$ git checkout test 
+M	question3.txt
+Basculement sur la branche 'test'
+3673871@pc4065:~/Bureau/TP5/git$ git add conflit 
+3673871@pc4065:~/Bureau/TP5/git$ git commit -m"conlit"
+[test 678fdb9] conlit
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+3673871@pc4065:~/Bureau/TP5/git$ cat conflit 
+!!!ligne1git commit conflit 
+3673871@pc4065:~/Bureau/TP5/git$ git checkout master 
+M	question3.txt
+Basculement sur la branche 'master'
+3673871@pc4065:~/Bureau/TP5/git$ cat conflit 
+ligne1git commit conflit  !!!
+3673871@pc4065:~/Bureau/TP5/git$ git merge test
+Fusion automatique de conflit
+CONFLIT (contenu) : Conflit de fusion dans conflit
+La fusion automatique a échoué ; réglez les conflits et validez le résultat.
+3673871@pc4065:~/Bureau/TP5/git$ git status 
+Sur la branche master
+Vous avez des chemins non fusionnés.
+  (réglez les conflits puis lancez "git commit")
+
+Chemins non fusionnés :
+  (utilisez "git add <fichier>..." pour marquer comme résolu)
+
+	modifié des deux côtés :conflit
+
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git checkout -- <fichier>..." pour annuler les modifications dans la copie de travail)
+
+	modifié:         question3.txt
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+7)
+
+Fichier conflit:
+<<<<<<< HEAD
+ligne1git commit conflit  !!!
+=======
+!!!ligne1git commit conflit 
+>>>>>>> test
+
+Dans mon fichier conflit, j'enlève les lignes qui ne m'intéressent pas et je laisse juste la modification que je veux pour les 2 branches:
+!!!ligne1git commit conflit 
+
+3673871@pc4065:~/Bureau/TP5/git$ git add conflit 
+3673871@pc4065:~/Bureau/TP5/git$ git status 
+Sur la branche master
+Tous les conflits sont réglés mais la fusion n'est pas terminée.
+  (utilisez "git commit" pour terminer la fusion)
+
+Modifications qui seront validées :
+
+	modifié:         conflit
+
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git checkout -- <fichier>..." pour annuler les modifications dans la copie de travail)
+
+	modifié:         question3.txt
+
+3673871@pc4065:~/Bureau/TP5/git$ git commit -m"conflit réglé"
+[master baafb76] conflit réglé
+3673871@pc4065:~/Bureau/TP5/git$ git status 
+Sur la branche master
+Modifications qui ne seront pas validées :
+  (utilisez "git add <fichier>..." pour mettre à jour ce qui sera validé)
+  (utilisez "git checkout -- <fichier>..." pour annuler les modifications dans la copie de travail)
+
+	modifié:         question3.txt
+
+aucune modification n'a été ajoutée à la validation (utilisez "git add" ou "git commit -a")
+
+8)
+
+3673871@pc4065:~/Bureau/TP5/git$ git branch -d test
+Branche test supprimée (précédemment 678fdb9).
+
+Exercice3:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
