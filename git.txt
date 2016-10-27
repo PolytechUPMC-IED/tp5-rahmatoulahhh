@@ -253,6 +253,70 @@ Branche test supprimée (précédemment 678fdb9).
 
 Exercice3:
 
+1)2)3)4)
+
+https://github.com/PolytechUPMC-IED/tp5-rahmatoulahhh.git
+
+
+3673871@pc4065:~/Bureau/TP5/git$ cd ..
+3673871@pc4065:~/Bureau/TP5$ ls
+git/  git.txt
+3673871@pc4065:~/Bureau/TP5$ git clone https://github.com/PolytechUPMC-IED/tp5-rahmatoulahhh.git
+Clonage dans 'tp5-rahmatoulahhh'...
+remote: Counting objects: 33, done.
+remote: Compressing objects: 100% (26/26), done.
+remote: Total 33 (delta 3), reused 33 (delta 3), pack-reused 0
+Unpacking objects: 100% (33/33), done.
+Vérification de la connectivité... fait.
+3673871@pc4065:~/Bureau/TP5$ ls
+git/  git.txt  tp5-rahmatoulahhh/
+3673871@pc4065:~/Bureau/TP5$ cd tp5-rahmatoulahhh/
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ ls
+debug/  pdf2html/  Readme.md  trombi/
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ ls
+debug/  pdf2html/  Readme.md  trombi/
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ cp ../
+git/               git.txt            tp5-rahmatoulahhh/ 
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ cp ../git.txt .
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ ls
+debug/  git.txt  pdf2html/  Readme.md  trombi/
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ git add git.txt
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ git commit -m "exo1 tp5"
+[master 09a2d70] exo1 tp5
+ 1 file changed, 297 insertions(+)
+ create mode 100644 git.txt
+3673871@pc4065:~/Bureau/TP5/tp5-rahmatoulahhh$ git push
+warning: push.default n'est pas défini ; sa valeur implicite change dans Git 2.0
+de 'matching' vers 'simple'. Pour supprimer ce message et maintenir
+le comportement actuel après la modification de la valeur de défaut, utilisez :
+
+  git config --global push.default matching
+
+Pour supprimer ce message et adopter le nouveau comportement maintenant, utilisez :
+
+  git config --global push.default simple
+
+Quand push.default vaudra 'matching', git poussera les branches locales
+sur les branches distantes qui existent déjà avec le même nom.
+
+Dans Git 2.0 Git utilisera par défaut le comportement plus conservatif 'simple'
+qui ne pousse la branche courante vers la branche distante que 'git pull' utilise
+pour mettre à jour la branche courante.
+ 
+Voir 'git help config' et chercher 'push.default' pour plus d'information.
+(le mode 'simple' a été introduit dans Git 1.7.11. Utilisez le mode similaire
+'current' au lieu de 'simple' si vous utilisez de temps en temps d'anciennes versions de Git)
+
+Username for 'https://github.com': rahmatoulahhh
+Password for 'https://rahmatoulahhh@github.com': 
+Counting objects: 4, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 2.33 KiB | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/PolytechUPMC-IED/tp5-rahmatoulahhh.git
+   b0ad3f3..09a2d70  master -> master
+
 
 
 
