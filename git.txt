@@ -18,7 +18,7 @@ Il y'a les répertoires git et .git qui ont été créés avec la commande git i
 
 3)
 
-(fichier question.txt créé dans le répertoire git)
+(fichier question3.txt créé dans le répertoire git)
 
 4)
 
